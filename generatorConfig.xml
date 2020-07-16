@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 指定MBG連線資料庫時所需要的MySQL JDBC driver的檔案位置 -->
+    <classPathEntry
+        location="C:/Users/mds_user/.m2/repository/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20.jar" />
+    <context id="moneynote_mybatis_generator"
+        defaultModelType="flat" targetRuntime="MyBatis3Simple"><!-- 產生的model為flat型式。產生傳統的MyBatis Mapper及可，不要產生新的Example檔 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 不要產生MBG的註解 -->
+            <property name="suppressDate" value="true" /><!-- 不要產生日期註解 -->
+        </commentGenerator>
+        <!-- 資料庫連線設定 -->
+        <jdbcConnection
+            connectionURL="jdbc:mysql://localhost:3306/moneynote"
+            driverClass="com.mysql.cj.jdbc.Driver" password="aa111111"
+            userId="root">
+            <property name="nullCatalogMeansCurrent"
+                value="true" /><!-- MySQL不支援schema及catelog的設定 -->
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true" /><!-- 日期或時間戳記不使用java.util.Date，改用Java 8的java.time.LocalDate -->
+        </javaTypeResolver>
+        <!-- 要產生的model位置，targetProject的值為專案的Source folder，所以是moneynote/src/main/java -->
+        <javaModelGenerator
+            targetPackage="idv.matt.entity"
+            targetProject="TPFDtest/moneynote/src/main/java" />
+        <!-- 要產生的MyBatis Mapper位置 --> 
+        <sqlMapGenerator targetPackage="idv.matt.mapper"
+            targetProject="TPFDtest/moneynote/src/main/java" />
+        <!-- 要產生的MyBatis Dao位置 -->      
+        <javaClientGenerator
+            targetPackage="idv.matt.dao"
+            targetProject="TPFDtest/moneynote/src/main/java" type="XMLMAPPER" /><!-- MyBatis Mapper設為xml格式 -->
+        <!-- 要生成的資料表 -->
+        <table tableName="member">
+            <columnOverride column="member_id"
+                javaType="java.lang.Long" jdbcType="BIGINT" /><!-- 因為id為unsigned BIGINT所做的設定 -->
+        </table>
+        <table tableName="expense_record">
+            <columnOverride column="expense_id"
+                javaType="java.lang.Long" jdbcType="BIGINT" />
+            <columnOverride column="member_id"
+                javaType="java.lang.Long" jdbcType="BIGINT" />
+        </table>
+    </context>
+</generatorConfiguration>
