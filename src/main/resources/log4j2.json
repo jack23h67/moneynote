@@ -1,0 +1,22 @@
+{
+    "configuration": {
+        "status": "warn",
+        "appenders": {
+            "Console": {
+                "name": "STDOUT",
+                "target": "SYSTEM_OUT",
+                "PatternLayout": {
+                    "pattern": "[%d{DEFAULT}][%p][%c{10}:%L] - %m%n"
+                }
+            }
+        },
+        "loggers": {
+            "root": {
+                "level": "info",
+                "AppenderRef": {
+                    "ref": "STDOUT"
+                }
+            }
+        }
+    }
+}
