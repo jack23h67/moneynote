@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-  
-  static final Logger logger = LoggerFactory.getLogger(HelloController.class.getName()); // 取得Logger
-
+  /*
+  static final Logger logger = LoggerFactory.getLogger(HelloController.class.getName());
+  // 取得Logger
   @GetMapping("/hello")
   public String hello() {
     logger.info("start");
@@ -17,4 +17,12 @@ public class HelloController {
     logger.info("end");
     return "hello moneynote";
   }
+  */
+    @GetMapping("/hello")
+    public String hello() {
+        String s = "hello moneynote";
+        System.out.println(s);
+
+        return s;
+    }
 }
